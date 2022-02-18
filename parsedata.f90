@@ -32,6 +32,8 @@ real :: totarea
 integer :: nlev
 integer :: ncat
 
+integer, dimension(1) :: n
+
 ! character(200) :: infile
 
 !---
@@ -54,8 +56,6 @@ lcat = 0
 element = 1
 prev = 0
 
-! open(10,file=infile,status='old')
-
 do
   read(*,*,end=99)level,cat,area
   
@@ -72,11 +72,10 @@ do
   larea(level,element) = area
   lcat(level,element) = cat
   
-  ! write(0,*)level,element,cat
+  ! write(0,*)level,element,cat,area
 
 end do
 
-! 99 close(10)
 99 continue
 
 do i = level,1,-1
@@ -89,7 +88,7 @@ do i = level,1,-1
   
   nelem = count(larea(i,:) > 0.)
   
-!   write(0,*)i,nelem
+  ! write(0,*)i,nelem
 
   if (nelem > 1) then !have to make wedges
     
@@ -111,9 +110,11 @@ do i = level,1,-1
       
     end do
     
-  else  !just write the circle diameter
+  else  !just write the circle diameter for the non-zero category
   
-    write(*,'(3i5,f10.4,a)')0,0,lcat(i,1),r0,' c'
+    n = maxloc(larea(i,:))
+  
+    write(*,'(3i5,f10.4,a)')0,0,lcat(i,n),r0,' c'
 
   end if
   

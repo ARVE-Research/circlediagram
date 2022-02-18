@@ -7,7 +7,7 @@ module load GMT
 
 gmt gmtset GMT_VERBOSE normal
 gmt gmtset MAP_FRAME_TYPE plain
-gmt gmtset MAP_FRAME_PEN 0.5p,0
+gmt gmtset MAP_FRAME_PEN 0.5p,white
 gmt gmtset PS_MEDIA a2
 gmt gmtset FONT_ANNOT_PRIMARY 9p,Helvetica,black
 gmt gmtset FONT_LABEL 9p,Helvetica,black
@@ -41,7 +41,7 @@ gmt psbasemap -R$xmin/$xmax/$ymin/$ymax -JX$wid -X0 -Y20 -B0 -P -K > $output
 
 awk -f parsedata.awk $infile | sort -n | ./parsedata $wid $pw_meters | gmt psxy -R -J -W$pen -C$cpt -S -O -P -K >> $output
 
-echo "a"    | gmt pstext -R -J -F+cTL+f9p,Helvetica-Bold -Dj0.3 -O -P -K >> $output
+echo "A"    | gmt pstext -R -J -F+cTL+f9p,Helvetica-Bold -Dj0.3 -O -P -K >> $output
 echo "Kadyangan household" | gmt pstext -R -J -F+cTC+f9p,Helvetica-Bold -Dj0.3 -O -P -K >> $output
 
 echo $pop  | gmt pstext -R -J -F+cTR+f9p,Helvetica-Bold -Dj0.3 -O -P -K >> $output
@@ -57,7 +57,7 @@ gmt psbasemap -R -J -X0 -Y-9.6 -B0 -O -P -K >> $output
 
 awk -f parsedata.awk $infile | sort -n | ./parsedata $wid $pw_meters | gmt psxy -R -J -W$pen -C$cpt -S -O -P -K >> $output
 
-echo "b"    | gmt pstext -R -J -F+cTL+f9p,Helvetica-Bold -Dj0.3 -O -P -K >> $output
+echo "B"    | gmt pstext -R -J -F+cTL+f9p,Helvetica-Bold -Dj0.3 -O -P -K >> $output
 echo "Nawotwot household" | gmt pstext -R -J -F+cTC+f9p,Helvetica-Bold -Dj0.3 -O -P -K >> $output
 echo $pop   | gmt pstext -R -J -F+cTR+f9p,Helvetica-Bold -Dj0.3 -O -P -K >> $output
 
@@ -92,7 +92,7 @@ radkm=`echo "$radius/1000" | bc -l`
 
 gmt psbasemap -R0/$wid/-4.65/4.65 -JX9.3 -X0 -Y0 -B0 -O -P -K >> $output
 
-echo "c" | gmt pstext -R -J -F+cTL+f9p,Helvetica-Bold -Dj0.3 -O -P -K >> $output
+echo "C" | gmt pstext -R -J -F+cTL+f9p,Helvetica-Bold -Dj0.3 -O -P -K >> $output
 
 #----
 #plot legend
